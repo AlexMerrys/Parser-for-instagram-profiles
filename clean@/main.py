@@ -1,3 +1,4 @@
+# Сбор данных из таблицы и отчистка их от пробелов и разделенение профилей запятыми
 import pandas as pd
 
 # Загружаем исходный файл (укажи нужное имя)
@@ -22,4 +23,5 @@ df_clean = pd.DataFrame(clean_mentions, columns=["Cleaned Mentions"])
 # Сохраняем в Excel
 df_clean.to_excel("mentions_cleaned.xlsx", index=False)
 
-print("✅ Упоминания сохранены в 'mentions_cleaned.xlsx'")
+print("Упоминания сохранены в 'mentions_cleaned.xlsx'")
+
