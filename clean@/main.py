@@ -1,4 +1,6 @@
 # Сбор данных из таблицы и отчистка их от пробелов и разделенение профилей запятыми
+# Данные до отчистки в файле "mentions_raw", а после в "mentions_cleaned".
+
 import pandas as pd
 
 # Загружаем исходный файл (укажи нужное имя)
@@ -24,4 +26,5 @@ df_clean = pd.DataFrame(clean_mentions, columns=["Cleaned Mentions"])
 df_clean.to_excel("mentions_cleaned.xlsx", index=False)
 
 print("Упоминания сохранены в 'mentions_cleaned.xlsx'")
+
 
