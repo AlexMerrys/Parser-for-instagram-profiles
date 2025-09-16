@@ -1,3 +1,5 @@
+# Отчиста ссылок от лишнего. в "instagram_links_raw" до, а в "instagram_links_cleaned" после
+
 import pandas as pd
 
 # Загрузка исходного файла
@@ -23,3 +25,4 @@ df_clean = pd.DataFrame(clean_links, columns=["Instagram Links"])
 # Сохраняем результат
 df_clean.to_excel("instagram_links_cleaned.xlsx", index=False)
 print("✅ Готово: сохранено в 'instagram_links_cleaned.xlsx'")
+
