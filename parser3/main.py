@@ -1,3 +1,5 @@
+# Сбор подписчиков на акканте с помощью цикличного перехода по ним из ссылок в таблице "links" и сохранение в instagram_followers_result
+
 import time
 import re
 import pandas as pd
@@ -13,7 +15,7 @@ driver = webdriver.Chrome(service=service)
 
 # Авторизация вручную
 driver.get("https://www.instagram.com/accounts/login/")
-print("🔑 Авторизуйтесь вручную и нажмите Enter.")
+print("Авторизуйтесь вручную и нажмите Enter.")
 input()
 
 # Загрузка Excel с аккаунтами
@@ -51,13 +53,14 @@ for idx, row in df.iterrows():
         followers = "Ошибка"
 
     df.at[idx, 'Подписчики'] = followers
-    print(f"✅ [{idx + 1}/{len(df)}] {url} — {followers}")
+    print(f"[{idx + 1}/{len(df)}] {url} — {followers}")
 
 # Сохраняем результат
 output_file = r'C:\Users\sasha\PycharmProjects\parser3\instagram_followers_result.xlsx'
 df.to_excel(output_file, index=False)
 
-print(f"\n📄 Готово! Сохранено в файл: {output_file}")
+print(f"\n Готово! Сохранено в файл: {output_file}")
 
 # Закрыть браузер
+
 driver.quit()
