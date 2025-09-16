@@ -1,3 +1,5 @@
+# Переход на посты из таблицы и парсинг текста публикации, упоминаний других блогеров, ссылок из текста и скрытых упоминаний под "еще" или "и"
+
 import time
 import re
 import pandas as pd
@@ -7,17 +9,17 @@ from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 
 # Путь к chromedriver.exe
-driver_path = r'C:\Users\sasha\OneDrive\Desktop\chromedriver.exe' # ПУТЬ ДО ВАШЕГО ФАЙЛА chromedriver.exe, \ - вот такие слеши должны быть, нужно вручную переписать
+driver_path = r'C:\Users\sasha\OneDrive\Desktop\chromedriver.exe' 
 service = Service(driver_path)
 driver = webdriver.Chrome(service=service)
 
 # Авторизация вручную
 driver.get("https://www.instagram.com/accounts/login/")
-print("🔑 Авторизуйтесь вручную и нажмите Enter.")
+print("Авторизуйтесь вручную и нажмите Enter.")
 input()
 
 # Загрузка таблицы
-input_file = 'instagram_collected_links.xlsx' # СЮДА НУЖНО ВСТАВИТЬ ССЫЛКИ, ПОЛУЧЕНЫЕ В ПЕРВОМ ПАРСЕРЕ
+input_file = 'instagram_collected_links.xlsx'
 df = pd.read_excel(input_file)
 
 # Подготовка колонок
@@ -26,7 +28,7 @@ for col in ['Текст публикации', 'Упоминания', 'Ссыл
         df[col] = ''
     df[col] = df[col].astype(str)
 
-# ❌ Исключения, запишите сюда профили создателей, в виде ссылок и ниже как юзеров
+# Исключения, запишите сюда профили создателей, в виде ссылок и ниже как юзеров
 excluded_links = {
     'https://www.instagram.com/golomazdina',
     'https://www.instagram.com/12storeez',
@@ -99,7 +101,7 @@ for idx, row in df.iterrows():
     except Exception:
         pass
 
-    # ❌ Фильтрация: исключения и ссылки на посты (/p/)
+    # Фильтрация: исключения и ссылки на посты (/p/)
     account_links = {link for link in account_links if link not in excluded_links}
     mentioned_accounts = {
         link for link in mentioned_accounts
@@ -112,14 +114,15 @@ for idx, row in df.iterrows():
     df.at[idx, 'Ссылки из блоков'] = ', '.join(sorted(account_links))
     df.at[idx, 'Упомянутые аккаунты'] = ', '.join(sorted(mentioned_accounts))
 
-    print(f"✅ [{idx + 1}/{len(df)}] Пост обработан.")
+    print(f"[{idx + 1}/{len(df)}] Пост обработан.")
     print(f"{mentions}")
     print(f"{account_links}")
     print(f"{mentioned_accounts}")
 
 # Сохраняем результат
 df.to_excel('instagram_parsed_results_FINAL.xlsx', index=False)
-print("\n📄 Парсинг завершён. Данные сохранены в 'instagram_parsed_results_FINAL.xlsx'")
+print("\n Парсинг завершён. Данные сохранены в 'instagram_parsed_results_FINAL.xlsx'")
 
 # Закрываем драйвер
 driver.quit()
+
