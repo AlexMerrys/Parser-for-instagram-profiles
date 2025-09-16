@@ -1,4 +1,4 @@
-import pyautogui as pag # ДЛЯ УСТАНОВКИ БИБЛИОТЕК НУЖНО НАВЕСТИ МЫШЬ НА ПОДЧЕРКУНТОЕ НАЗВАНИЕ, ДАЛЕЕ INSTALL PACKAGE ИЛИ INSTALL ALL MISSING PACKAGES
+import pyautogui as pag 
 import pyperclip
 import pandas as pd
 import time
@@ -9,7 +9,7 @@ pag.PAUSE = 0.3
 
 all_links = []
 
-print("▶️ Запущено. Нажмите F1, чтобы остановить в любой момент.\n")
+print("Запущено. Нажмите F1, чтобы остановить в любой момент.\n")
 
 for i in range(2):
     if keyboard.is_pressed('F1'):
@@ -95,3 +95,4 @@ for i in range(2):
     df = pd.DataFrame(all_links, columns=["Post Links"])
     df.to_excel("instagram_collected_links.xlsx", index=False)
     print(f"\n📄 Сохранено {len(all_links)} ссылок в файл 'instagram_collected_links.xlsx'")
+
