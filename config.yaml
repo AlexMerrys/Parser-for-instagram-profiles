@@ -1,0 +1,50 @@
+# Конфигурационный файл для Instagram Profile Parser
+
+# Настройки браузера
+browser:
+  driver_path: "chromedriver.exe"  # Путь к ChromeDriver
+  headless: false  # Запуск браузера в фоновом режиме
+  window_size: "1920,1080"  # Размер окна браузера
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# Настройки задержек (в секундах)
+delays:
+  page_load: 3  # Задержка после загрузки страницы
+  element_wait: 2  # Ожидание появления элемента
+  scroll_delay: 0.4  # Задержка между скроллами
+  click_delay: 0.2  # Задержка между кликами
+
+# Настройки Instagram
+instagram:
+  login_url: "https://www.instagram.com/accounts/login/"
+  base_url: "https://www.instagram.com"
+  excluded_profiles:  # Исключаемые профили
+    - "golomazdina"
+    - "12storeez"
+    - "ivan.kh"
+  
+# Настройки парсинга
+parsing:
+  max_posts_per_profile: 50  # Максимальное количество постов для парсинга
+  max_followers_check: 1000  # Максимальное количество профилей для проверки подписчиков
+  retry_attempts: 3  # Количество попыток при ошибках
+  
+# Настройки файлов
+files:
+  input_directory: "input/"  # Папка с входными файлами
+  output_directory: "output/"  # Папка с результатами
+  backup_directory: "backup/"  # Папка для резервных копий
+  excel_format: "xlsx"  # Формат Excel файлов
+  
+# Настройки логирования
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "parser.log"  # Файл для логов
+  max_size: "10MB"  # Максимальный размер лог файла
+  backup_count: 5  # Количество резервных лог файлов
+
+# Настройки безопасности
+security:
+  respect_robots_txt: true  # Соблюдение robots.txt
+  rate_limit: 1  # Задержка между запросами (секунды)
+  max_concurrent_requests: 1  # Максимальное количество одновременных запросов
